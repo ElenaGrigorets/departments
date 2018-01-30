@@ -10,8 +10,9 @@ import java.util.Map;
  * Created by dik81 on 23.01.18.
  */
 public class Department {
-    private String name;
     private Integer id;
+
+    private String name;
 
     public String getName() {
         return name;
