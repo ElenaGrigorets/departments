@@ -19,7 +19,7 @@ import java.sql.SQLException;
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.setAttribute("departmentsList", DepartmentsHolder.getDepartments());
+//      req.setAttribute("departmentsList", DepartmentsHolder.getDepartments());
         DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
         try {
             req.setAttribute("departmentsList", departmentDao.getDepartments());

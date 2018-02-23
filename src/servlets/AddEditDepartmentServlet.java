@@ -1,8 +1,9 @@
 package servlets;
 
+import dao.DepartmentDao;
+import dao.impl.DepartmentsDaoMysqlImpl;
 import holder.DepartmentsHolder;
 import model.Department;
-import sun.invoke.empty.Empty;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by dik81 on 23.01.18.
@@ -22,7 +24,15 @@ public class AddEditDepartmentServlet extends HttpServlet {
        String paramId = req.getParameter("id");
         if ( paramId != null ) {
             Integer id = Integer.valueOf(paramId);
-            Department department = DepartmentsHolder.getDepartmentById(id);
+            DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+            Department department = null;
+            try {
+                department = departmentDao.getDepartmentById(id);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             req.setAttribute("editedName", department.getName());
             req.setAttribute("id", id);
         } else {
@@ -38,12 +48,31 @@ public class AddEditDepartmentServlet extends HttpServlet {
         String paramId = req.getParameter("id");
         String name = req.getParameter("name");
         if ( paramId==null||paramId.isEmpty()) {
+            DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
             Department department = new Department();
             department.setName(name);
-            DepartmentsHolder.addDepartment(department);
+            try {
+                departmentDao.addDepartment(department);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+//            Department department = new Department();
+//            department.setName(name);
+//            DepartmentsHolder.addDepartmentOldMethod(department);
+            
         } else {
             Integer id = Integer.valueOf(paramId);
-            DepartmentsHolder.getDepartmentById(id).setName(name);
+            DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+            try {
+                departmentDao.updateDepartment(id, name);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
  /**

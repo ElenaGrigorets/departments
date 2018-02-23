@@ -42,4 +42,8 @@ public class Department {
 
     public User getUserById(Integer id) { return userMap.get(id);  }
 
+//    @Override
+//    public int compareTo(Department o) {
+//        return this.name.compareTo(o.getName());
+//    }
 }
