@@ -1,5 +1,7 @@
 package servlets;
 
+import dao.UserDao;
+import dao.impl.UserDaoMysqlImpl;
 import holder.DepartmentsHolder;
 import model.Department;
 
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by dik81 on 25.01.18.
@@ -20,8 +23,17 @@ public class RemoveUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer userId = Integer.valueOf(req.getParameter("userId"));
         Integer departmentId = Integer.valueOf(req.getParameter("id"));
-        Department department = DepartmentsHolder.getDepartmentById(departmentId);
-        department.removeUser(userId);
+        UserDao userDao = new UserDaoMysqlImpl();
+        try {
+            userDao.removeUser(userId);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //todo
+//        Department department = DepartmentsHolder.getDepartmentById(departmentId);
+//        department.removeUser(userId);
         req.setAttribute("id", departmentId);
         req.getRequestDispatcher("/listUsersServlet").forward(req, resp);
     }
