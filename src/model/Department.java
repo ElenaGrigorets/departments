@@ -30,17 +30,17 @@ public class Department {
         this.id = id;
     }
 
-    private Map<Integer, User> userMap = new HashMap<>();
+//    private Map<Integer, User> userMap = new HashMap<>();
 
-    public void addUser(User user) {
-        user.setId(DepartmentsHolder.createId(userMap.keySet()));
-        userMap.put(user.getId(), user);
-    }
+//    public void addUser(User user) {
+//        user.setId(DepartmentsHolder.createId(userMap.keySet()));
+//        userMap.put(user.getId(), user);
+//    }
 
-    public Collection<User> getUsers() { return userMap.values();   }
-    public void removeUser(Integer id) { userMap.remove(id);   }
-
-    public User getUserById(Integer id) { return userMap.get(id);  }
+//    public Collection<User> getUsersOfDepartment() { return userMap.values();   }
+//    public void removeUser(Integer id) { userMap.remove(id);   }
+//
+//    public User getUserById(Integer id) { return userMap.get(id);  }
 
 //    @Override
 //    public int compareTo(Department o) {

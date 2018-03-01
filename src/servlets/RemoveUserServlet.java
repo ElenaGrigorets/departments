@@ -31,8 +31,8 @@ public class RemoveUserServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //todo
-//        Department department = DepartmentsHolder.getDepartmentById(departmentId);
+
+//        Department department = DepartmentsHolder.getDepartmentByIdOldMethod(departmentId);
 //        department.removeUser(userId);
         req.setAttribute("id", departmentId);
         req.getRequestDispatcher("/listUsersServlet").forward(req, resp);

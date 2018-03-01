@@ -28,7 +28,7 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
      }
 
     @Override
-    public Department getDepartmentById(Integer departmentId) throws ClassNotFoundException, SQLException {
+    public Department getDepartmentByIdOldMethod(Integer departmentId) throws ClassNotFoundException, SQLException {
         ResultSet rs = null;
         Department department = null;
         try {
@@ -56,8 +56,9 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
 
 
     @Override
-    public Department getDepartmentByIdPreparedStatement(Integer departmentId) throws ClassNotFoundException, SQLException {
+    public Department getDepartmentById(Integer departmentId) throws ClassNotFoundException, SQLException {
         ResultSet rs = null;
+        Department department = null;
         try {
             conn = DriverManager.getConnection(DB_URL, "root", "root");
             stmt = conn.createStatement();
@@ -69,7 +70,6 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
 
             rs = preparedStatement.executeQuery();
 
-            Department department = null;
             while (rs.next()) {
                 department = new Department();
                 department.setId(rs.getInt("id"));
@@ -82,7 +82,7 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
             }
             stmt.close();
         }
-        return null;
+        return department;
     }
 
     @Override

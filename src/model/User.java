@@ -7,10 +7,13 @@ public class User {
     private String name;
     private int age;
     private Integer id;
+    private Integer departmentId;
 
-    public User(String name, Integer age) {
-        setName(name);
-        setAge(age);
+    public User(String name, Integer age, Integer departmentId) {
+        this.name = name;
+        this.age = age;
+        this.departmentId = departmentId;
+
     }
 
     public String getName() {
@@ -36,4 +39,9 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Integer getDepartmentId() {return departmentId; }
+
+    public void setDepartmentId(Integer departmentId) { this.departmentId = departmentId; }
+
 }

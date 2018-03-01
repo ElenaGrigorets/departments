@@ -9,13 +9,23 @@
 <html>
 <head>
     <title>Add Form</title>
+    <%--<script>--%>
+        <%--function validateForm() {--%>
+            <%--var x = document.departmentForm.name.value;--%>
+            <%--if (x == "") {--%>
+                <%--alert("Name must be filled out!");--%>
+                <%--return false;--%>
+ <%--//               /^[A-Za-z ]+$/.test(x)--%>
+            <%--}--%>
+        <%--}--%>
+    <%--</script>--%>
 </head>
 <body>
-<form action="/addDepartmentServlet?id=${id}" method="post">
+<form name="departmentForm" action="/addDepartmentServlet?id=${id}"  method="post">
     <table>
         <tr><td>Department name:</td></tr>
         <tr><td>
-            <input type="text" name="name" value="${editedName}">
+            <input type="text" pattern="[a-zA-Z0-9]+" name="name" value="${editedName}" title="Please enter letters or digits" required>
         </td></tr>
         <tr><td>
             <input type="submit" value="Submit">

@@ -2,7 +2,6 @@ package servlets;
 
 import dao.DepartmentDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
-import holder.DepartmentsHolder;
 import model.Department;
 
 import javax.servlet.RequestDispatcher;

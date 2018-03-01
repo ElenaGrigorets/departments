@@ -9,14 +9,15 @@ import java.util.*;
  */
 public class DepartmentsHolder {
     private static Map <Integer, Department> departmentMap = new HashMap<>();
-    public static Collection<Department> getDepartments () {
-        return departmentMap.values();
-    }
 
-    public static void addDepartment (Department department) {
-     department.setId(createId(departmentMap.keySet()));
-     departmentMap.put(department.getId(), department);
-    }
+//    public static Collection<Department> getDepartments () {
+//        return departmentMap.values();
+//    }
+
+//    public static void addDepartment (Department department) {
+//     department.setId(createId(departmentMap.keySet()));
+//     departmentMap.put(department.getId(), department);
+//    }
 
     public static Integer createId(Set<Integer> set) {
         int maxKey = 0;
@@ -29,11 +30,11 @@ public class DepartmentsHolder {
         return id;
     }
 
-    public static void removeDepartment(Integer id) {
-        departmentMap.remove(id);
-    }
-
-    public static Department getDepartmentById (Integer id){
-        return departmentMap.get(id);
-    }
+//    public static void removeDepartment(Integer id) {
+//        departmentMap.remove(id);
+//    }
+//
+//    public static Department getDepartmentByIdOldMethod (Integer id){
+//        return departmentMap.get(id);
+//    }
 }

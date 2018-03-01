@@ -1,8 +1,9 @@
 package servlets;
 
 import dao.DepartmentDao;
+import dao.UserDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
-import holder.DepartmentsHolder;
+import dao.impl.UserDaoMysqlImpl;
 import model.Department;
 
 import javax.servlet.RequestDispatcher;
@@ -23,12 +24,12 @@ public class ListUsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.valueOf(req.getParameter("id"));
         DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+        UserDao userDao = new UserDaoMysqlImpl();
         try {
-            Department department = departmentDao.getDepartmentByIdPreparedStatement(id);
-            req.setAttribute("usersList", department.getUsers());
+            Department department = departmentDao.getDepartmentById(id);
+            req.setAttribute("usersList", userDao.getUsersOfDepartment(id));
             req.setAttribute("departmentName", department.getName());
             req.setAttribute("departmentId", id);
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface DepartmentDao {
 
-    Department getDepartmentById(Integer id) throws ClassNotFoundException, SQLException;
+    Department getDepartmentByIdOldMethod(Integer id) throws ClassNotFoundException, SQLException;
 
-    Department getDepartmentByIdPreparedStatement(Integer departmentId) throws ClassNotFoundException, SQLException;
+    Department getDepartmentById(Integer departmentId) throws ClassNotFoundException, SQLException;
 
     List<Department> getDepartments() throws ClassNotFoundException, SQLException;
 
