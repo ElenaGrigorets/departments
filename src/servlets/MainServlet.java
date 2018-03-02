@@ -2,6 +2,8 @@ package servlets;
 
 import dao.DepartmentDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
+import service.DepartmentService;
+import service.impl.DepartmentServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,12 +22,10 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //      req.setAttribute("departmentsList", DepartmentsHolder.getDepartments());
-        DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+        DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
         try {
-            req.setAttribute("departmentsList", departmentDao.getDepartments());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            req.setAttribute("departmentsList", departmentService.getDepartments());
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("departments.jsp");

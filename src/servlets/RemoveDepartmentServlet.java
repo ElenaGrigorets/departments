@@ -3,6 +3,8 @@ package servlets;
 import dao.DepartmentDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import holder.DepartmentsHolder;
+import service.DepartmentService;
+import service.impl.DepartmentServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,12 +23,10 @@ public class RemoveDepartmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.valueOf(req.getParameter("id"));
-        DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+        DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
         try {
-            departmentDao.removeDepartment(id);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            departmentService.removeDepartment(id);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 

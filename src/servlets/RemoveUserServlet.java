@@ -4,6 +4,8 @@ import dao.UserDao;
 import dao.impl.UserDaoMysqlImpl;
 import holder.DepartmentsHolder;
 import model.Department;
+import service.UserService;
+import service.impl.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,12 +25,10 @@ public class RemoveUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer userId = Integer.valueOf(req.getParameter("userId"));
         Integer departmentId = Integer.valueOf(req.getParameter("id"));
-        UserDao userDao = new UserDaoMysqlImpl();
+        UserService userService = new UserServiceImpl(new UserDaoMysqlImpl());
         try {
-            userDao.removeUser(userId);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            userService.removeUser(userId);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 

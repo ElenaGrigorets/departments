@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by dik81 on 30.01.18.
- */
+
 public class DepartmentsDaoMysqlImpl implements DepartmentDao {
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";

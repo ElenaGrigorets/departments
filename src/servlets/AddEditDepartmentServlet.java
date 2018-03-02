@@ -3,6 +3,8 @@ package servlets;
 import dao.DepartmentDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import model.Department;
+import service.DepartmentService;
+import service.impl.DepartmentServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,21 +25,16 @@ public class AddEditDepartmentServlet extends HttpServlet {
        String paramId = req.getParameter("id");
         if ( paramId != null ) {
             Integer id = Integer.valueOf(paramId);
-            DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+            DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
             Department department = null;
             try {
-                department = departmentDao.getDepartmentById(id);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
+                department = departmentService.getDepartmentById(id);
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
             req.setAttribute("editedName", department.getName());
             req.setAttribute("id", id);
-        } else {
-
         }
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("addEditDepartment.jsp");
         dispatcher.forward(req, resp);
     }
@@ -47,14 +44,12 @@ public class AddEditDepartmentServlet extends HttpServlet {
         String paramId = req.getParameter("id");
         String name = req.getParameter("name");
         if ( paramId==null||paramId.isEmpty()) {
-            DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+            DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
             Department department = new Department();
             department.setName(name);
             try {
-                departmentDao.addDepartment(department);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
+                departmentService.addDepartment(department);
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
 
@@ -64,12 +59,10 @@ public class AddEditDepartmentServlet extends HttpServlet {
             
         } else {
             Integer id = Integer.valueOf(paramId);
-            DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+            DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
             try {
-                departmentDao.updateDepartment(id, name);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
+                departmentService.updateDepartment(id, name);
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         }

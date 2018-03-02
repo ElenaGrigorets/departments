@@ -1,13 +1,12 @@
-package dao;
+package service;
 
 import model.User;
 
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
 
-public interface UserDao {
+public interface UserService {
     User getUserById (Integer id) throws ClassNotFoundException, SQLException;
     List<User> getUsersOfDepartment(Integer id) throws ClassNotFoundException, SQLException;
     void addUser(User user) throws ClassNotFoundException, SQLException;

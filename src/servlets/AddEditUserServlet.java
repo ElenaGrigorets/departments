@@ -6,6 +6,10 @@ import dao.impl.DepartmentsDaoMysqlImpl;
 import dao.impl.UserDaoMysqlImpl;
 import model.Department;
 import model.User;
+import service.DepartmentService;
+import service.UserService;
+import service.impl.DepartmentServiceImpl;
+import service.impl.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,13 +38,11 @@ public class AddEditUserServlet extends HttpServlet {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-        UserDao userDao = new UserDaoMysqlImpl();
+        UserService userService = new UserServiceImpl(new UserDaoMysqlImpl());
         User user = null;
         try {
-            user = userDao.getUserById(userId);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            user = userService.getUserById(userId);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         req.setAttribute("editedName", user.getName());
@@ -56,33 +58,27 @@ public class AddEditUserServlet extends HttpServlet {
         String name = req.getParameter("name");
         Integer age = Integer.valueOf(req.getParameter("age"));
         Integer departmentId = Integer.valueOf(req.getParameter("id"));
-        DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
+        DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
         Department department = null;
         try {
-            department = departmentDao.getDepartmentById(departmentId);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            department = departmentService.getDepartmentById(departmentId);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        UserDao userDao = new UserDaoMysqlImpl();
+        UserService userService = new UserServiceImpl(new UserDaoMysqlImpl());
         String paramUserId = req.getParameter("userId");
         if (paramUserId==null||paramUserId.isEmpty()) {
             User user = new User(name, age, departmentId);
             try {
-                userDao.addUser(user);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
+                userService.addUser(user);
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         } else {
             Integer userId = Integer.valueOf(paramUserId);
             try {
-                userDao.updateUser(userId, name, age);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
+                userService.updateUser(userId, name, age);
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
 
@@ -90,10 +86,8 @@ public class AddEditUserServlet extends HttpServlet {
         req.setAttribute("departmentName", department.getName());
         req.setAttribute("departmentId", departmentId);
         try {
-            req.setAttribute("usersList", userDao.getUsersOfDepartment(departmentId));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            req.setAttribute("usersList", userService.getUsersOfDepartment(departmentId));
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("users.jsp");

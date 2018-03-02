@@ -7,9 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by dik81 on 26.02.18.
- */
+
 public class UserDaoMysqlImpl implements UserDao {
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost/departments";

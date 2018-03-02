@@ -5,6 +5,10 @@ import dao.UserDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import dao.impl.UserDaoMysqlImpl;
 import model.Department;
+import service.DepartmentService;
+import service.UserService;
+import service.impl.DepartmentServiceImpl;
+import service.impl.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,16 +27,14 @@ public class ListUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.valueOf(req.getParameter("id"));
-        DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
-        UserDao userDao = new UserDaoMysqlImpl();
+        DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
+        UserService userService = new UserServiceImpl(new UserDaoMysqlImpl());
         try {
-            Department department = departmentDao.getDepartmentById(id);
-            req.setAttribute("usersList", userDao.getUsersOfDepartment(id));
+            Department department = departmentService.getDepartmentById(id);
+            req.setAttribute("usersList", userService.getUsersOfDepartment(id));
             req.setAttribute("departmentName", department.getName());
             req.setAttribute("departmentId", id);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 
