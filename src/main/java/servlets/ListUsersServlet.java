@@ -1,7 +1,5 @@
 package servlets;
 
-import dao.DepartmentDao;
-import dao.UserDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import dao.impl.UserDaoMysqlImpl;
 import model.Department;
