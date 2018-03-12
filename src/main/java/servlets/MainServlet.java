@@ -17,7 +17,7 @@ import java.sql.SQLException;
 /**
  * Created by dik81 on 23.01.18.
  */
-@WebServlet (value = "/mainServlet")
+//@WebServlet (value = "/mainServlet")
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

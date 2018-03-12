@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Add Form</title>
@@ -21,17 +22,31 @@
     <%--</script>--%>
 </head>
 <body>
-<form name="departmentForm" action="/addDepartmentServlet?id=${id}"  method="post">
+
+<spring:form method="post" action="/addDepartmentServlet" modelAttribute="department">
     <table>
         <tr><td>Department name:</td></tr>
         <tr><td>
-            <input type="text" pattern="[a-zA-Z0-9]+" name="name" value="${editedName}" title="Please enter letters or digits" required>
+            <spring:input path="name" type="text" pattern="[a-zA-Z0-9]+" name="name" value="${editedName}" title="Please enter letters or digits" />
         </td></tr>
         <tr><td>
-            <input type="submit" value="Submit">
+            <spring:input type="submit" value="Submit" path=""/>
         </td></tr>
     </table>
-</form>
+</spring:form>
+
+
+<%--<form name="departmentForm" action="/addDepartmentServlet?id=${id}"  method="post">--%>
+    <%--<table>--%>
+        <%--<tr><td>Department name:</td></tr>--%>
+        <%--<tr><td>--%>
+            <%--<input type="text" pattern="[a-zA-Z0-9]+" name="name" value="${editedName}" title="Please enter letters or digits" required>--%>
+        <%--</td></tr>--%>
+        <%--<tr><td>--%>
+            <%--<input type="submit" value="Submit">--%>
+        <%--</td></tr>--%>
+    <%--</table>--%>
+<%--</form>--%>
 
 </body>
 </html>
