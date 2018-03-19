@@ -19,7 +19,7 @@ import java.sql.SQLException;
 /**
  * Created by dik81 on 25.01.18.
  */
-@WebServlet (value = "/removeUserServlet")
+//@WebServlet (value = "/removeUserServlet")
 public class RemoveUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

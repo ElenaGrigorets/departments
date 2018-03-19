@@ -27,7 +27,10 @@
     <table>
         <tr><td>Department name:</td></tr>
         <tr><td>
-            <spring:input path="name" type="text" pattern="[a-zA-Z0-9]+" name="name" value="${editedName}" title="Please enter letters or digits" />
+            <spring:hidden path="id" name="id" value="${department.id}" title="Please enter letters or digits" />
+        </td></tr>
+        <tr><td>
+            <spring:input path="name" type="text" pattern="[a-zA-Z0-9]+" name="name" value="${department.name}" title="Please enter letters or digits" />
         </td></tr>
         <tr><td>
             <spring:input type="submit" value="Submit" path=""/>
