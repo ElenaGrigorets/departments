@@ -2,13 +2,15 @@ package dao.impl;
 
 import dao.DepartmentDao;
 import model.Department;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-
+@Repository
 public class DepartmentsDaoMysqlImpl implements DepartmentDao {
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -24,6 +26,9 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
              e.printStackTrace();
          }
      }
+
+    public DepartmentsDaoMysqlImpl() {
+    }
 
     @Override
     public Department getDepartmentByIdOldMethod(Integer departmentId) throws ClassNotFoundException, SQLException {

@@ -3,6 +3,7 @@ package controller;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import dao.impl.DepartmentsDaoOracleImpl;
 import model.Department;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,10 @@ import java.sql.SQLException;
  */
 @Controller
 public class DepartmentsController {
-    //    mainServlet
-    DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoOracleImpl());
+
+    @Autowired
+    private DepartmentService departmentService;
+//    DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoOracleImpl());
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() throws SQLException, ClassNotFoundException {
@@ -43,7 +46,7 @@ public class DepartmentsController {
 //        String paramId = req.getParameter("id");
         ModelAndView modelAndView = new ModelAndView();
         if (id != null) {
-            DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
+//            DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
             Department department = null;
             try {
                 department = departmentService.getDepartmentById(id);
@@ -61,8 +64,7 @@ public class DepartmentsController {
     }
 
     @RequestMapping(value = "/addDepartmentServlet", method = RequestMethod.POST)
-    public void addDepartment(@ModelAttribute("department") Department department,
-                              HttpServletResponse response)
+    public void addDepartment(@ModelAttribute("department") Department department, HttpServletResponse response)
             throws SQLException, ClassNotFoundException, IOException {
 
         if (department.getId() == null) {

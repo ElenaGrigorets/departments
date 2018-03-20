@@ -2,12 +2,13 @@ package dao.impl;
 
 import dao.UserDao;
 import model.User;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Repository
 public class UserDaoMysqlImpl implements UserDao {
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost/departments";

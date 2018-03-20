@@ -3,14 +3,21 @@ package service.impl;
 import dao.DepartmentDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import model.Department;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import service.DepartmentService;
 
 import java.sql.SQLException;
 import java.util.List;
 
 
+@Service
 public class DepartmentServiceImpl implements DepartmentService {
+    @Autowired
     private DepartmentDao departmentDao;
+
+    public DepartmentServiceImpl() {
+    }
 
     public DepartmentServiceImpl(DepartmentDao departmentDao) {
         this.departmentDao = departmentDao;
