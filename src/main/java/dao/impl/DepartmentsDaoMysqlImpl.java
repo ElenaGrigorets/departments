@@ -2,6 +2,8 @@ package dao.impl;
 
 import dao.DepartmentDao;
 import model.Department;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -9,9 +11,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class DepartmentsDaoMysqlImpl implements DepartmentDao {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost/departments";
@@ -90,31 +97,41 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
 
     @Override
     public List<Department> getDepartments() throws ClassNotFoundException, SQLException {
-        ResultSet rs = null;
-        List<Department> departments;
-        try {
-            conn = DriverManager.getConnection(DB_URL, "root", "root");
-            stmt = conn.createStatement();
-
-            String sql = "SELECT id, name FROM departments ORDER BY name";
-            rs = stmt.executeQuery(sql);
-
-            departments = new ArrayList<>();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                Department department = new Department();
-                department.setId(id);
-                department.setName(name);
-                departments.add(department);
-            }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            stmt.close();
+        List<Map<String, Object>> departments = jdbcTemplate.queryForList("SELECT id, name FROM departments ORDER BY name");
+        List<Department> departmentList = new ArrayList<>();
+        for (Map<String, Object> departmentObject : departments) {
+            Department department = new Department();
+            department.setId(Integer.parseInt(String.valueOf(departmentObject.get("id"))));
+            department.setName(String.valueOf(departmentObject.get("name")));
+            departmentList.add(department);
         }
-        return departments;
+        return departmentList;
+//        https://www.jeejava.com/select-example-using-spring-jdbctemplate/
+//        ResultSet rs = null;
+//        List<Department> departments;
+//        try {
+//            conn = DriverManager.getConnection(DB_URL, "root", "root");
+//            stmt = conn.createStatement();
+//
+//            String sql = "SELECT id, name FROM departments ORDER BY name";
+//            rs = stmt.executeQuery(sql);
+//
+//            departments = new ArrayList<>();
+//            while (rs.next()) {
+//                int id = rs.getInt("id");
+//                String name = rs.getString("name");
+//                Department department = new Department();
+//                department.setId(id);
+//                department.setName(name);
+//                departments.add(department);
+//            }
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            stmt.close();
+//        }
+//        return departments;
     }
 
     @Override
