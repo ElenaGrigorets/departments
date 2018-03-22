@@ -1,6 +1,7 @@
 package springInAction.juggles;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import springInAction.Knight;
 
@@ -9,8 +10,15 @@ import springInAction.Knight;
  */
 public class Main {
     public static void main(String[] args) throws PerformanceException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("juggles.xml");
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext("juggles.xml");
         PoeticJuggler poeticJuggler15 = (PoeticJuggler) context.getBean("poeticJuggler");
+        PoeticJuggler poeticJuggler11 = (PoeticJuggler) context.getBean("poeticJuggler");
         poeticJuggler15.perform();
+
+        Stage stage = (Stage) context.getBean("stage");
+        Stage stage2 = (Stage) context.getBean("stage");
+        Stage stage3 = Stage.getInstance();
+        context.registerShutdownHook();
+
     }
 }
