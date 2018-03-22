@@ -24,7 +24,6 @@ public class DepartmentsDaoOracleImpl implements DepartmentDao {
          }
      }
 
-    @Override
     public Department getDepartmentByIdOldMethod(Integer departmentId) throws ClassNotFoundException, SQLException {
         ResultSet rs = null;
         Department department = null;
@@ -49,8 +48,6 @@ public class DepartmentsDaoOracleImpl implements DepartmentDao {
         }
         return department;
     }
-
-
 
     @Override
     public Department getDepartmentById(Integer departmentId) throws ClassNotFoundException, SQLException {
@@ -110,8 +107,6 @@ public class DepartmentsDaoOracleImpl implements DepartmentDao {
         }
         return departments;
     }
-
-    @Override
     public void addDepartmentOldMethod(Department department) throws ClassNotFoundException, SQLException {
         int id = 0;
         String name = department.getName();
