@@ -7,8 +7,7 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-       <bean id="poeticJuggler" class="springInAction.juggles.PoeticJuggler"
-               init-method="beforeStart" destroy-method="beforeStop">
+       <bean id="poeticJuggler" class="springInAction.juggles.PoeticJuggler">
               <constructor-arg value="15"/>
               <constructor-arg ref="poem"/>
               <constructor-arg ref="stage"/>

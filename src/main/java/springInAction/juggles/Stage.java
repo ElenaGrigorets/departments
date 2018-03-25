@@ -4,7 +4,7 @@ public class Stage {
     private Stage() {
     }
 
-    public void pringSomething() {
+    public void printSomething() {
         System.out.println("stage print");
     }
 

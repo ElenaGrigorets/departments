@@ -16,21 +16,21 @@
             <%--if (x == "") {--%>
                 <%--alert("Name must be filled out!");--%>
                 <%--return false;--%>
- <%--//               /^[A-Za-z ]+$/.test(x)--%>
+                <%--/^[A-Za-z ]+$/.test(x)--%>
             <%--}--%>
         <%--}--%>
     <%--</script>--%>
 </head>
 <body>
 
-<spring:form method="post" action="/addDepartmentServlet" modelAttribute="department">
+<spring:form name="departmentForm" method="post" action="/mvc/addDepartmentServlet" modelAttribute="department">
     <table>
         <tr><td>Department name:</td></tr>
         <tr><td>
-            <spring:hidden path="id" name="id" value="${department.id}" title="Please enter letters or digits" />
+            <spring:hidden path="id" name="id" value="${department.id}"/>
         </td></tr>
         <tr><td>
-            <spring:input path="name" type="text" pattern="[a-zA-Z0-9]+" name="name" value="${department.name}" title="Please enter letters or digits" />
+            <spring:input required="true" path="name" type="text" pattern="[a-zA-Z0-9]+" name="name" value="${department.name}" title="Please enter letters or digits" placeholder="DepartmentName"/>
         </td></tr>
         <tr><td>
             <spring:input type="submit" value="Submit" path=""/>

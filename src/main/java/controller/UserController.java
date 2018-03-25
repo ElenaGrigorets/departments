@@ -19,6 +19,7 @@ import java.sql.SQLException;
  * Created by dik81 on 20.03.18.
  */
 @Controller
+//@RequestMapping(value = "/mvc")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -58,12 +59,12 @@ public class UserController {
         }else {
             userService.updateUser(user.getId(), user.getName(), user.getAge());
         }
-        response.sendRedirect("/listUsersServlet?id=" + user.getDepartmentId());
+        response.sendRedirect("/mvc/listUsersServlet?id=" + user.getDepartmentId());
     }
 
     @RequestMapping(value = "/removeUserServlet", method = RequestMethod.GET)
     public void removeUser(@RequestParam Integer userId, Integer id, HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException {
         userService.removeUser(userId);
-        response.sendRedirect("/listUsersServlet?id=" + id);
+        response.sendRedirect("/mvc/listUsersServlet?id=" + id);
     }
 }

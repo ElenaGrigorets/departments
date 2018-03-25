@@ -10,6 +10,10 @@
 
     <packaging>war</packaging>
 
+    <properties>
+        <spring.version>5.0.4.RELEASE</spring.version>
+    </properties>
+
 <dependencies>
     <dependency>
         <groupId>javax.servlet</groupId>
@@ -39,22 +43,22 @@
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-core</artifactId>
-        <version>3.1.2.RELEASE</version>
+        <version>${spring.version}</version>
     </dependency>
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
-        <version>3.1.2.RELEASE</version>
+        <version>${spring.version}</version>
     </dependency>
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-beans</artifactId>
-        <version>3.1.2.RELEASE</version>
+        <version>${spring.version}</version>
     </dependency>
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
-        <version>3.1.2.RELEASE</version>
+        <version>${spring.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
     <dependency>
@@ -66,7 +70,7 @@
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-jdbc</artifactId>
-        <version>3.1.2.RELEASE</version>
+        <version>${spring.version}</version>
     </dependency>
 
 

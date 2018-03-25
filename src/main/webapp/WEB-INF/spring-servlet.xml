@@ -38,5 +38,7 @@
     </bean>
     <!--<bean id="studentDao" class="com.roytuts.spring.select.dao.impl.StudentDAOImpl" />-->
 
+    <mvc:resources mapping="/resources/**" location="js" />
+
        <mvc:annotation-driven/>
 </beans>

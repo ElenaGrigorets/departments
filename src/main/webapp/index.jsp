@@ -12,6 +12,6 @@
     <title></title>
   </head>
   <body>
-  <jsp:forward page="/mainServlet"/>
+  <jsp:forward page="/mvc/mainServlet"/>
   </body>
 </html>

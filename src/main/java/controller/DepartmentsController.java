@@ -21,6 +21,7 @@ import java.sql.SQLException;
  * Created by dmitry on 12.03.18.
  */
 @Controller
+//@RequestMapping(value = "/mvc")
 public class DepartmentsController {
 
     @Autowired
