@@ -75,13 +75,13 @@ public class DepartmentsController {
 
         }
 
-        response.sendRedirect("/mainServlet");
+        response.sendRedirect("/mvc/mainServlet");
     }
 
     @RequestMapping(value = "/removeDepartmentServlet", method = RequestMethod.GET)
     public void removeDepartment(@RequestParam Integer id, HttpServletResponse response)
             throws SQLException, ClassNotFoundException, IOException {
          departmentService.removeDepartment(id);
-        response.sendRedirect("/mainServlet");
+        response.sendRedirect("/mvc/mainServlet");
     }
 }

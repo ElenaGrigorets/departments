@@ -40,7 +40,7 @@
  </table>
     <br>
     <p>
-        <a href="/addDepartmentServlet"><button class="btn btn-primary btn-circle btn-xl">Add department</button></a>
+        <a href="/mvc/addDepartmentServlet"><button class="btn btn-primary btn-circle btn-xl">Add department</button></a>
     </p>
 </div>
  </body>

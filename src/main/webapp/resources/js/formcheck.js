@@ -1,23 +1,23 @@
-/**
- * Created by dik81 on 25.03.18.
- */
-//$(document).ready(function(){
-//
-//    alert("dfdfd");
-//
-//});
 
-// Wait for the DOM to be ready
-$(function() {
-    // Initialize form validation on the registration form.
-    // It has the name attribute "registration"
-    $("form[id='myform']").validate({
+$(function validateFunction() {
+    $("#myform").validate({
+        submitHandler: function (form) {
+
+
+            $(form).submit();
+        }
+    });
+}
+
         // Specify validation rules
-        rules: {
+//        rules: {
             // The key name on the left side is the name attribute
             // of an input field. Validation rules are defined
             // on the right side
-            name: "required"
+//            name: {
+//                required: true,
+//                minlength: 3
+//},
             //lastname: "required",
             //email: {
             //    required: true,
@@ -29,21 +29,21 @@ $(function() {
             //    required: true,
             //    minlength: 5
             //}
-        },
+
         // Specify validation error messages
-        messages: {
-            name: "enter the name"
+        //messages: {
+        //    name: "enter the name more 3 characters"
             //lastname: "Please enter your lastname",
             //password: {
             //    required: "Please provide a password",
             //    minlength: "Your password must be at least 5 characters long"
             //},
             //email: "Please enter a valid email address"
-        },
+  //      },
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });
-});
+//        submitHandler: function(form) {
+//            form.submit();
+//        }
+//    });
+//});

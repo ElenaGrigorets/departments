@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<spring:form name="departmentForm" method="post" action="/mvc/addDepartmentServlet" modelAttribute="department">
+<spring:form name="departmentForm" id="myform" method="post" action="/mvc/addDepartmentServlet" modelAttribute="department">
     <table>
         <tr><td>Department name:</td></tr>
         <tr><td>
@@ -33,7 +33,7 @@
             <spring:input required="true" path="name" type="text" pattern="[a-zA-Z0-9]+" name="name" value="${department.name}" title="Please enter letters or digits" placeholder="DepartmentName"/>
         </td></tr>
         <tr><td>
-            <spring:input type="submit" value="Submit" path=""/>
+            <spring:input type="submit" submitHandler="true" value="Submit" path=""/>
         </td></tr>
     </table>
 </spring:form>

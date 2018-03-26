@@ -31,7 +31,7 @@
                           data-validation="length" data-validation-length="max100"/></td></tr>
     <tr><td>Enter age:</td></tr>
     <tr><td><spring:input path="age" type="number" name="age" value="${user.age}" required="required"/></td></tr>
-    <tr><td><spring:input  class="btn large btn-success" path="" type="submit" value="Submit"/></td></tr>
+    <tr><td><spring:input  class="btn large btn-success" path="" type="submit" value="Submit" onclick="validateFunction()"/></td></tr>
     </table>
 
 </spring:form>
