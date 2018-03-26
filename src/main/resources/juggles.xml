@@ -17,4 +17,15 @@
 
        <bean id="stage" class="springInAction.juggles.Stage" factory-method="getInstance"
                scope="prototype"/>
+
+       <bean id="instrumentalist" class="springInAction.juggles.Instrumentalist">
+           <property name="songString" value="Yesterday song"/>
+              <property name="instrument" ref="piano"/>
+       </bean>
+
+       <bean id="piano" class="springInAction.juggles.InstrumentPiano" />
+       <bean id="domra" class="springInAction.juggles.InstrumentDomra" />
+
+
+
 </beans>
