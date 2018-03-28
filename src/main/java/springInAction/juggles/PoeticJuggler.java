@@ -5,17 +5,15 @@ import org.springframework.beans.factory.InitializingBean;
 
 public class PoeticJuggler extends Juggler implements InitializingBean, DisposableBean{
     private Poem poem;
-    private Stage stage;
 
     public PoeticJuggler(Poem poem) { // Внедрение поэмы
 //        super();
         this.poem = poem;
     }
 
-    public PoeticJuggler(int beanBags, Poem poem, Stage stage) {
+    public PoeticJuggler(int beanBags, Poem poem) {
         super(beanBags);
         this.poem = poem;
-        this.stage = stage;
     }
 
     // Внедрение количества
@@ -24,7 +22,6 @@ public class PoeticJuggler extends Juggler implements InitializingBean, Disposab
         super.perform();
         System.out.println("While reciting...");
         poem.recite();
-        stage.printSomething();
     }
 
     public void beforeStart() {

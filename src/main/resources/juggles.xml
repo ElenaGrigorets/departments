@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -10,18 +11,18 @@
        <bean id="poeticJuggler" class="springInAction.juggles.PoeticJuggler">
               <constructor-arg value="15"/>
               <constructor-arg ref="poem"/>
-              <constructor-arg ref="stage"/>
        </bean>
 
        <bean id="poem" class="springInAction.juggles.Sonnet29"/>
 
        <bean id="stage" class="springInAction.juggles.Stage" factory-method="getInstance"
-               scope="prototype"/>
+               scope="prototype">
+              <property name="performer" ref="instrumentalist"/>
+               </bean>
 
-       <bean id="instrumentalist" class="springInAction.juggles.Instrumentalist">
-           <property name="songString" value="Yesterday song"/>
-              <property name="instrument" ref="piano"/>
-       </bean>
+       <bean id="instrumentalist" class="springInAction.juggles.Instrumentalist"
+              p:songString = "Yesterday song"
+              p:instrument-ref = "piano" />
 
        <bean id="piano" class="springInAction.juggles.InstrumentPiano" />
        <bean id="domra" class="springInAction.juggles.InstrumentDomra" />

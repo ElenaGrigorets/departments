@@ -5,6 +5,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import springInAction.Knight;
 
+import java.util.Properties;
+
 /**
  * Created by dmitry on 20.03.18.
  */
@@ -23,7 +25,8 @@ public class Main {
         Instrumentalist instrumentalist = (Instrumentalist) context.getBean("instrumentalist");
         instrumentalist.perform();
 
-        Performer performer = (Performer) context.getBean("performer");
+        Stage stage = (Stage) context.getBean("stage");
+        stage.beginShow();
 
         context.registerShutdownHook();
 
