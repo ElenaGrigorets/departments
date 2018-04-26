@@ -1,5 +1,5 @@
 
-$(function validateFunction() {
+$(function validateFunction(){
     $("#myform").validate({
         submitHandler: function (form) {
 
@@ -7,7 +7,7 @@ $(function validateFunction() {
             $(form).submit();
         }
     });
-}
+})
 
         // Specify validation rules
 //        rules: {
