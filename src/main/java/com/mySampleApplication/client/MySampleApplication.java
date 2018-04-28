@@ -7,7 +7,9 @@ import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.mySampleApplication.client.ui.DepartmentAddEditFormPanel;
 import com.mySampleApplication.shared.Department;
+import service.DepartmentService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +29,8 @@ public class MySampleApplication implements EntryPoint {
         department.setName("dep1");
         department.setId(1);
         Department department2 = new Department();
-        department2.setName("dep1");
-        department2.setId(1);
+        department2.setName("dep2");
+        department2.setId(2);
 
         List<Department> departmentList = Arrays.asList(department, department2);
 
@@ -37,7 +39,7 @@ public class MySampleApplication implements EntryPoint {
         for (Department departmentToAdd : departmentList) {
             HorizontalPanel horizontalPanel = new HorizontalPanel();
             horizontalPanel.add(new Label(String.valueOf(departmentToAdd.getId())));
-            horizontalPanel.add(new Label(departmentToAdd.getName()));
+            horizontalPanel.add(createNameAnchor(departmentToAdd));
             verticalPanel.add(horizontalPanel);
         }
 
@@ -46,8 +48,33 @@ public class MySampleApplication implements EntryPoint {
         RootPanel.get().add(verticalPanel);
     }
 
+    private Anchor createNameAnchor(final Department departmentToAdd) {
+        Anchor anchor = new Anchor(departmentToAdd.getName());
+        anchor.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                DepartmentsServiceGWT.App.getInstance().getMessage(departmentToAdd.getName(),
+                        new AsyncCallback<String>() {
+                            @Override
+                            public void onFailure(Throwable caught) {
+                                Window.alert("bad");
+                            }
 
-   /**
+                            @Override
+                            public void onSuccess(String result) {
+                                Window.alert("all is good - " + result);
+                                RootPanel.get().clear();
+                                RootPanel.get().add(new DepartmentAddEditFormPanel(departmentToAdd));
+                            }
+                        });
+//                Window.alert("name anchor clicked for name = " + departmentToAdd.getName());
+            }
+        });
+        return anchor;
+    }
+
+
+    /**
      * Create a TextBox example that includes the text box and an optional handler
      * that updates a Label with the currently selected text.
      *

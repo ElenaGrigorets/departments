@@ -14,6 +14,10 @@
         <servlet-name>com.mySampleApplication.MySampleApplication MySampleApplicationService</servlet-name>
         <servlet-class>com.mySampleApplication.server.MySampleApplicationServiceImpl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DepartmentsServiceGwt</servlet-name>
+        <servlet-class>com.mySampleApplication.server.DepartmentsServiceGWTImpl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
         <url-pattern>/mvc/*</url-pattern>
@@ -21,6 +25,10 @@
     <servlet-mapping>
         <servlet-name>com.mySampleApplication.MySampleApplication MySampleApplicationService</servlet-name>
         <url-pattern>/MySampleApplication/MySampleApplicationService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DepartmentsServiceGwt</servlet-name>
+        <url-pattern>/MySampleApplication/DepartmentsServiceGWT</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

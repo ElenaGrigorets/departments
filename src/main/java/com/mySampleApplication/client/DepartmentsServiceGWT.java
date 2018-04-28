@@ -4,8 +4,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("DepartmentsService")
-public interface DepartmentsService extends RemoteService {
+@RemoteServiceRelativePath("DepartmentsServiceGWT")
+public interface DepartmentsServiceGWT extends RemoteService {
     // Sample interface method of remote interface
     String getMessage(String msg);
 
@@ -14,9 +14,9 @@ public interface DepartmentsService extends RemoteService {
      * Use MySampleApplicationService.App.getInstance() to access static instance of MySampleApplicationServiceAsync
      */
     public static class App {
-        private static DepartmentsServiceAsync ourInstance = GWT.create(DepartmentsService.class);
+        private static DepartmentsServiceGWTAsync ourInstance = GWT.create(DepartmentsServiceGWT.class);
 
-        public static synchronized DepartmentsServiceAsync getInstance() {
+        public static synchronized DepartmentsServiceGWTAsync getInstance() {
             return ourInstance;
         }
     }
