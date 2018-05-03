@@ -1,12 +1,10 @@
 package dao.impl;
 
-import model.Department;
+import com.mySampleApplication.client.shared.Department;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DepartmentMapper implements RowMapper<Department> {
   @Override

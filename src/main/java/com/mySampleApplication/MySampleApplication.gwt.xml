@@ -7,6 +7,7 @@
 
     <source path="shared"/>
     <source path="client"/>
+    <source path="model"/>
 
     <!-- Specify the app entry point class.                   -->
     <entry-point class='com.mySampleApplication.client.MySampleApplication'/>

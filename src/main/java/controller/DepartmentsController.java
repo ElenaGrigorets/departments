@@ -1,8 +1,6 @@
 package controller;
 
-import dao.impl.DepartmentsDaoMysqlImpl;
-import dao.impl.DepartmentsDaoOracleImpl;
-import model.Department;
+import com.mySampleApplication.client.shared.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import service.DepartmentService;
-import service.impl.DepartmentServiceImpl;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

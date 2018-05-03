@@ -1,10 +1,8 @@
 package servlets;
 
-import dao.DepartmentDao;
-import dao.UserDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import dao.impl.UserDaoMysqlImpl;
-import model.Department;
+import com.mySampleApplication.client.shared.Department;
 import model.User;
 import service.DepartmentService;
 import service.UserService;
@@ -13,7 +11,6 @@ import service.impl.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

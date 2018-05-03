@@ -1,8 +1,7 @@
 package service.impl;
 
 import dao.DepartmentDao;
-import dao.impl.DepartmentsDaoMysqlImpl;
-import model.Department;
+import com.mySampleApplication.client.shared.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.DepartmentService;

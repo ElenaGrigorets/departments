@@ -1,6 +1,6 @@
 package holder;
 
-import model.Department;
+import com.mySampleApplication.client.shared.Department;
 
 import java.util.*;
 

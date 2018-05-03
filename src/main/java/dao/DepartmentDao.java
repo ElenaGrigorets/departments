@@ -1,6 +1,6 @@
 package dao;
 
-import model.Department;
+import com.mySampleApplication.client.shared.Department;
 
 import java.sql.SQLException;
 import java.util.List;

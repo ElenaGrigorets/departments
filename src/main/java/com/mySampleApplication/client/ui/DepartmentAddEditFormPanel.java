@@ -4,7 +4,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.mySampleApplication.shared.Department;
+import com.mySampleApplication.client.shared.Department;
 
 /**
  * Created by dik81 on 28.04.18.

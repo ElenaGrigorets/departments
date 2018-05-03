@@ -1,13 +1,10 @@
 package dao.impl;
 
 import dao.DepartmentDao;
-import model.Department;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import com.mySampleApplication.client.shared.Department;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 //@Repository

@@ -1,15 +1,11 @@
 package dao.impl;
 
 import dao.DepartmentDao;
-import model.Department;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mySampleApplication.client.shared.Department;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by dik81 on 22.03.18.

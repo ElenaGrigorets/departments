@@ -8,10 +8,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.mySampleApplication.client.ui.DepartmentAddEditFormPanel;
-import com.mySampleApplication.shared.Department;
-import service.DepartmentService;
+//import com.mySampleApplication.shared.Department;
+import com.mySampleApplication.client.shared.Department;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -25,27 +24,38 @@ public class MySampleApplication implements EntryPoint {
      */
     public void onModuleLoad() {
 
-        Department department = new Department();
-        department.setName("dep1");
-        department.setId(1);
-        Department department2 = new Department();
-        department2.setName("dep2");
-        department2.setId(2);
+//        Department department = new Department();
+//        department.setName("dep1");
+//        department.setId(1);
+//        Department department2 = new Department();
+//        department2.setName("dep2");
+//        department2.setId(2);
 
-        List<Department> departmentList = Arrays.asList(department, department2);
+//        List<Department> departmentList = Arrays.asList(department, department2);
 
-        VerticalPanel verticalPanel = new VerticalPanel();
+        DepartmentsServiceGWT.App.getInstance().getDepartments(new AsyncCallback<List<Department>>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                System.out.println("fail");
+            }
 
-        for (Department departmentToAdd : departmentList) {
-            HorizontalPanel horizontalPanel = new HorizontalPanel();
-            horizontalPanel.add(new Label(String.valueOf(departmentToAdd.getId())));
-            horizontalPanel.add(createNameAnchor(departmentToAdd));
-            verticalPanel.add(horizontalPanel);
-        }
+            @Override
+            public void onSuccess(List<Department> result) {
+                VerticalPanel verticalPanel = new VerticalPanel();
 
-        verticalPanel.add(new Button("Add department"));
+                for (Department departmentToAdd : result) {
+                    HorizontalPanel horizontalPanel = new HorizontalPanel();
+                    horizontalPanel.add(new Label(String.valueOf(departmentToAdd.getId())));
+                    horizontalPanel.add(createNameAnchor(departmentToAdd));
+                    verticalPanel.add(horizontalPanel);
+                }
 
-        RootPanel.get().add(verticalPanel);
+                verticalPanel.add(new Button("Add department"));
+
+                RootPanel.get().add(verticalPanel);
+            }
+        });
+
     }
 
     private Anchor createNameAnchor(final Department departmentToAdd) {

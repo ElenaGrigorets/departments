@@ -1,7 +1,8 @@
-package model;
+package com.mySampleApplication.client.shared;
 
 import holder.DepartmentsHolder;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +36,7 @@ import java.util.Map;
         return department;
     }
  */
-public class Department {
+public class Department implements Serializable {
     private Integer id;
 
     private String name;

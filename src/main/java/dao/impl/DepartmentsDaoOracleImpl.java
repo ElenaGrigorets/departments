@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.DepartmentDao;
-import model.Department;
+import com.mySampleApplication.client.shared.Department;
 
 import java.sql.*;
 import java.util.ArrayList;
