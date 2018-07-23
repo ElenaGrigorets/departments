@@ -10,4 +10,10 @@ public interface DepartmentsServiceGWTAsync {
     void getMessage(String msg, AsyncCallback<String> async);
 
     void getDepartments(AsyncCallback<List<Department>> callback);
+
+    void addDepartment(Department department, AsyncCallback<Void> callback);
+
+    void removeDepartment(Integer id, AsyncCallback<Void> callback);
+
+    void updateDepartment(Department department, AsyncCallback<Void> asyncCallback);
 }

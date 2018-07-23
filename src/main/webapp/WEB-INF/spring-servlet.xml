@@ -33,7 +33,7 @@
     <bean id="departmentDaoTemplateMySql" class="dao.impl.DepartmentDaoTemplateMySqlImpl">
          <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="userDaoTemplateMySql" class="dao.impl.UserDaoTemplateMySqlImpl">
+    <bean id="userDaoTe mplateMySql" class="dao.impl.UserDaoTemplateMySqlImpl">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
     <!--<bean id="studentDao" class="com.roytuts.spring.select.dao.impl.StudentDAOImpl" />-->

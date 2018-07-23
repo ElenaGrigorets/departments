@@ -1,4 +1,4 @@
-package model;
+package com.mySampleApplication.client.shared;
 
 import java.io.Serializable;
 

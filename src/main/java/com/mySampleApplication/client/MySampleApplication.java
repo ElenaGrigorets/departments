@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.mySampleApplication.client.ui.DepartmentAddEditFormPanel;
 //import com.mySampleApplication.shared.Department;
 import com.mySampleApplication.client.shared.Department;
+import com.mySampleApplication.client.ui.ListDepartmentsPanel;
 
 import java.util.List;
 
@@ -32,56 +33,10 @@ public class MySampleApplication implements EntryPoint {
 //        department2.setId(2);
 
 //        List<Department> departmentList = Arrays.asList(department, department2);
-
-        DepartmentsServiceGWT.App.getInstance().getDepartments(new AsyncCallback<List<Department>>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                System.out.println("fail");
-            }
-
-            @Override
-            public void onSuccess(List<Department> result) {
-                VerticalPanel verticalPanel = new VerticalPanel();
-
-                for (Department departmentToAdd : result) {
-                    HorizontalPanel horizontalPanel = new HorizontalPanel();
-                    horizontalPanel.add(new Label(String.valueOf(departmentToAdd.getId())));
-                    horizontalPanel.add(createNameAnchor(departmentToAdd));
-                    verticalPanel.add(horizontalPanel);
-                }
-
-                verticalPanel.add(new Button("Add department"));
-
-                RootPanel.get().add(verticalPanel);
-            }
-        });
-
+        new ListDepartmentsPanel();
     }
 
-    private Anchor createNameAnchor(final Department departmentToAdd) {
-        Anchor anchor = new Anchor(departmentToAdd.getName());
-        anchor.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                DepartmentsServiceGWT.App.getInstance().getMessage(departmentToAdd.getName(),
-                        new AsyncCallback<String>() {
-                            @Override
-                            public void onFailure(Throwable caught) {
-                                Window.alert("bad");
-                            }
 
-                            @Override
-                            public void onSuccess(String result) {
-                                Window.alert("all is good - " + result);
-                                RootPanel.get().clear();
-                                RootPanel.get().add(new DepartmentAddEditFormPanel(departmentToAdd));
-                            }
-                        });
-//                Window.alert("name anchor clicked for name = " + departmentToAdd.getName());
-            }
-        });
-        return anchor;
-    }
 
 
     /**
