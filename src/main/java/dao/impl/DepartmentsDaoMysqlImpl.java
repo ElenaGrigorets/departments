@@ -1,5 +1,6 @@
 package dao.impl;
 
+import com.mySampleApplication.client.shared.exceptions.CustomException;
 import dao.DepartmentDao;
 import com.mySampleApplication.client.shared.Department;
 
@@ -85,7 +86,7 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
     }
 
     @Override
-    public List<Department> getDepartments() throws ClassNotFoundException, SQLException {
+    public List<Department> getDepartments() throws ClassNotFoundException, SQLException, CustomException {
         ResultSet rs = null;
         List<Department> departments;
         try {
@@ -110,6 +111,9 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
             }
             stmt.close();
         }
+//        if(!departments.isEmpty()) {
+//            throw new CustomException();
+//        }
         return departments;
     }
 

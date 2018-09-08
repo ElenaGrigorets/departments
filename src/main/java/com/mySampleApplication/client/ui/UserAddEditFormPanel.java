@@ -13,6 +13,7 @@ import com.mySampleApplication.client.shared.User;
  */
 public class UserAddEditFormPanel extends VerticalPanel {
     private TextBox nameTextBox;
+    private IntegerBox ageBox;
 
     public UserAddEditFormPanel(final User user) {
         nameTextBox = new TextBox();
@@ -22,9 +23,11 @@ public class UserAddEditFormPanel extends VerticalPanel {
         namePanel.add(nameTextBox);
         setSize("50px", "50px");
         add(namePanel);
-        nameTextBox = new TextBox();
+        ageBox = new IntegerBox();
         HorizontalPanel agePanel = new HorizontalPanel();
         agePanel.add(new Label("Age: "));
+        agePanel.add(ageBox);
+        add(agePanel);
 
         Button saveButton = new Button("Save");
         namePanel.add(saveButton);
@@ -32,6 +35,7 @@ public class UserAddEditFormPanel extends VerticalPanel {
             @Override
             public void onClick(ClickEvent event) {
                 user.setName(nameTextBox.getValue());
+                user.setAge(ageBox.getValue());
                 if (user.getId() == null) {
                     UsersServiceGWT.App.getInstance().addUser(user,
                             new AsyncCallback<Void>() {
@@ -41,7 +45,7 @@ public class UserAddEditFormPanel extends VerticalPanel {
 
                                 @Override
                                 public void onSuccess(Void result) {
-                                    new ListUsersPanel(null);
+                                    new ListUsersPanel(user.getDepartmentId());
                                 }
                             });
                 } else {
@@ -53,7 +57,7 @@ public class UserAddEditFormPanel extends VerticalPanel {
 
                                 @Override
                                 public void onSuccess(Void result) {
-                                    new ListUsersPanel(null);
+                                    new ListUsersPanel(user.getDepartmentId());
                                 }
                             });
                 }

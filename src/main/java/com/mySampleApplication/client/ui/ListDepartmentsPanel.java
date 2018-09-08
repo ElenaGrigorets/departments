@@ -9,6 +9,7 @@ import com.mySampleApplication.client.DepartmentsServiceGWT;
 import com.mySampleApplication.client.UsersServiceGWT;
 import com.mySampleApplication.client.shared.Department;
 import com.mySampleApplication.client.shared.User;
+import com.mySampleApplication.client.shared.exceptions.CustomException;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public class ListDepartmentsPanel extends VerticalPanel {
             @Override
             public void onFailure(Throwable caught) {
                 System.out.println("oops!..fail...");
+                if (caught instanceof CustomException) {
+                    Window.alert("custome exception");
+                }
             }
 
             @Override

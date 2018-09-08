@@ -1,6 +1,7 @@
 package controller;
 
 import com.mySampleApplication.client.shared.Department;
+import com.mySampleApplication.client.shared.exceptions.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,7 +32,7 @@ public class DepartmentsController {
     }
 
     @RequestMapping(value = "/mainServlet", method = RequestMethod.GET)
-    public ModelAndView main() throws SQLException, ClassNotFoundException {
+    public ModelAndView main() throws SQLException, ClassNotFoundException, CustomException {
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.addObject("departmentsList", departmentService.getDepartments());

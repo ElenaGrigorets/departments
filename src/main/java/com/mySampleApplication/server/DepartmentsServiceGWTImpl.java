@@ -3,6 +3,7 @@ package com.mySampleApplication.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.mySampleApplication.client.DepartmentsServiceGWT;
 import com.mySampleApplication.client.shared.Department;
+import com.mySampleApplication.client.shared.exceptions.CustomException;
 import dao.DepartmentDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
 
@@ -19,7 +20,7 @@ public class DepartmentsServiceGWTImpl extends RemoteServiceServlet implements D
     }
 
     @Override
-    public List<Department> getDepartments() {
+    public List<Department> getDepartments() throws CustomException {
         DepartmentDao departmentDao = new DepartmentsDaoMysqlImpl();
         try {
             return departmentDao.getDepartments();

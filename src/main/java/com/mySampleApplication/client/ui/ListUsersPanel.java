@@ -66,7 +66,9 @@ public class ListUsersPanel extends VerticalPanel {
                     @Override
                     public void onClick(ClickEvent event) {
                         RootPanel.get().clear();
-                        RootPanel.get().add(new DepartmentAddEditFormPanel(new Department()));
+                        User user = new User();
+                        user.setDepartmentId(departmentId);
+                        RootPanel.get().add(new UserAddEditFormPanel(user));
                     }
                 });
                 add(addButton);
