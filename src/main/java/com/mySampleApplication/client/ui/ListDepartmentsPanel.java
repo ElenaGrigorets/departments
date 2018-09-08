@@ -6,7 +6,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.mySampleApplication.client.DepartmentsServiceGWT;
+import com.mySampleApplication.client.UsersServiceGWT;
 import com.mySampleApplication.client.shared.Department;
+import com.mySampleApplication.client.shared.User;
 
 import java.util.List;
 
@@ -50,6 +52,29 @@ public class ListDepartmentsPanel extends VerticalPanel {
                     });
                     horizontalPanel.add(removeButton);
 
+                    Button editButton = new Button("Edit");
+                    editButton.addClickHandler(new ClickHandler() {
+                        @Override
+                        public void onClick(ClickEvent event) {
+                                RootPanel.get().clear();
+                                RootPanel.get().add(new DepartmentAddEditFormPanel(departmentToAdd));
+                            //
+//                            DepartmentsServiceGWT.App.getInstance().removeDepartment(departmentToAdd.getId(),
+//                                    new AsyncCallback<Void>() {
+//                                        @Override
+//                                        public void onFailure(Throwable caught) {
+//
+//                                        }
+//
+//                                        @Override
+//                                        public void onSuccess(Void result) {
+//                                            new ListDepartmentsPanel();
+//                                        }
+//                                    });
+                        }
+                    });
+                    horizontalPanel.add(editButton);
+
                     add(horizontalPanel);
                 }
 
@@ -82,42 +107,24 @@ public class ListDepartmentsPanel extends VerticalPanel {
         anchor.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                DepartmentsServiceGWT.App.getInstance().getMessage(departmentToAdd.getName(),
-                        new AsyncCallback<String>() {
-                            @Override
-                            public void onFailure(Throwable caught) {
-                                Window.alert("bad");
-                            }
-
-                            @Override
-                            public void onSuccess(String result) {
-                                RootPanel.get().clear();
-                                RootPanel.get().add(new DepartmentAddEditFormPanel(departmentToAdd));
-                            }
-                        });
+                RootPanel.get().clear();
+                RootPanel.get().add(new ListUsersPanel(departmentToAdd.getId()));
+//                DepartmentsServiceGWT.App.getInstance().getMessage(departmentToAdd.getName(),
+//                        new AsyncCallback<String>() {
+//                            @Override
+//                            public void onFailure(Throwable caught) {
+//                                Window.alert("bad");
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(String result) {
+//                                RootPanel.get().clear();
+//                                RootPanel.get().add(new DepartmentAddEditFormPanel(departmentToAdd));
+//                            }
+//                        });
 
             }
         });
         return anchor;
     }
-
-//    anchor.addClickHandler(new ClickHandler() {
-//        @Override
-//        public void onClick(ClickEvent event) {
-//            DepartmentsServiceGWT.App.getInstance().getMessage(departmentToAdd.getName(),
-//                    new AsyncCallback<String>() {
-//                        @Override
-//                        public void onFailure(Throwable caught) {
-//                            Window.alert("bad");
-//                        }
-//
-//                        @Override
-//                        public void onSuccess(String result) {
-//                            RootPanel.get().clear();
-//                            RootPanel.get().add(new DepartmentAddEditFormPanel(departmentToAdd));
-//                        }
-//                    });
-//
-//        }
-//    });
 }

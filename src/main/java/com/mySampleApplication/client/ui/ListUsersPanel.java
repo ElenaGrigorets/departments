@@ -6,7 +6,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.mySampleApplication.client.DepartmentsServiceGWT;
+import com.mySampleApplication.client.UsersServiceGWT;
 import com.mySampleApplication.client.shared.Department;
+import com.mySampleApplication.client.shared.User;
 
 import java.util.List;
 
@@ -15,46 +17,51 @@ import java.util.List;
  */
 public class ListUsersPanel extends VerticalPanel {
 
-
-
-    public ListUsersPanel() {
-        DepartmentsServiceGWT.App.getInstance().getDepartments(new AsyncCallback<List<Department>>() {
+    public ListUsersPanel(final Integer departmentId) {
+        UsersServiceGWT.App.getInstance().getUsersOfDepartment(departmentId, new AsyncCallback<List<User>>() {
             @Override
             public void onFailure(Throwable caught) {
                 System.out.println("oops!..fail...");
             }
 
             @Override
-            public void onSuccess(List<Department> result) {
-                for (final Department departmentToAdd : result) {
+            public void onSuccess(List<User> result) {
+
+                for (final User userToAdd : result) {
                     HorizontalPanel horizontalPanel = new HorizontalPanel();
-                    horizontalPanel.add(new Label(String.valueOf(departmentToAdd.getId())));
-                    horizontalPanel.add(createNameAnchor(departmentToAdd));
+                    horizontalPanel.add(new Label(String.valueOf(userToAdd.getId())));
+                    horizontalPanel.add(new Label(String.valueOf(userToAdd.getName())));
+
                     Button removeButton = new Button("Remove");
                     removeButton.addClickHandler(new ClickHandler() {
                         @Override
                         public void onClick(ClickEvent event) {
-                            DepartmentsServiceGWT.App.getInstance().removeDepartment(departmentToAdd.getId(),
+                            UsersServiceGWT.App.getInstance().removeUser(userToAdd.getId(),
                                     new AsyncCallback<Void>() {
                                         @Override
                                         public void onFailure(Throwable caught) {
-
                                         }
 
                                         @Override
                                         public void onSuccess(Void result) {
-                                            new ListUsersPanel();
+                                            new ListUsersPanel(departmentId);
                                         }
                                     });
                         }
                     });
                     horizontalPanel.add(removeButton);
-
                     add(horizontalPanel);
+                    Button editButton = new Button("Edit");
+                    editButton.addClickHandler(new ClickHandler() {
+                        @Override
+                        public void onClick(ClickEvent event) {
+                            RootPanel.get().clear();
+                            RootPanel.get().add(new UserAddEditFormPanel(userToAdd));
+//                            UsersServiceGWT.App.getInstance().updateUser(userToAdd);
+                        }
+                    });
                 }
-
-
-                Button addButton = new Button("Add department");
+                Button addButton = new Button("Add user");
                 addButton.addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
@@ -70,36 +77,5 @@ public class ListUsersPanel extends VerticalPanel {
 
     }
 
-    private Anchor createNameAnchor(final Department departmentToAdd) {
-        final Anchor anchor = new Anchor(departmentToAdd.getName());
-//        anchor.addClickListener(new ClickListener() {
-//            @Override
-//            public void onClick(Widget sender) {
-//                anchor.getElement().getStyle().setColor("red");
-//                String s = "fdfd";
-//            }
-//        });
-        anchor.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                DepartmentsServiceGWT.App.getInstance().getMessage(departmentToAdd.getName(),
-                        new AsyncCallback<String>() {
-                            @Override
-                            public void onFailure(Throwable caught) {
-                                Window.alert("bad");
-                            }
 
-                            @Override
-                            public void onSuccess(String result) {
-//                              Window.alert("all is good - " + result);
-//                              Window.alert("clicked for " + departmentToAdd.getName());
-                                RootPanel.get().clear();
-                                RootPanel.get().add(new DepartmentAddEditFormPanel(departmentToAdd));
-                            }
-                        });
-
-            }
-        });
-        return anchor;
-    }
 }

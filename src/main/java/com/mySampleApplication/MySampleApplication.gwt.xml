@@ -17,5 +17,6 @@
     <!-- Specify the app servlets.                   -->
     <servlet path='/MySampleApplicationService' class='com.mySampleApplication.server.MySampleApplicationServiceImpl'/>
     <servlet path='/DepartmentsServiceGWT' class='com.mySampleApplication.server.DepartmentsServiceGWTImpl'/>
+    <servlet path='/UsersServiceGWT' class='com.mySampleApplication.server.UsersServiceGWTImpl'/>
 
 </module>

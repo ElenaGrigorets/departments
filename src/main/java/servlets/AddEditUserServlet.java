@@ -3,7 +3,7 @@ package servlets;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import dao.impl.UserDaoMysqlImpl;
 import com.mySampleApplication.client.shared.Department;
-import model.User;
+import com.mySampleApplication.client.shared.User;
 import service.DepartmentService;
 import service.UserService;
 import service.impl.DepartmentServiceImpl;
