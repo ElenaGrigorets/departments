@@ -5,7 +5,6 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.mySampleApplication.client.shared.Department;
 import com.mySampleApplication.client.shared.exceptions.CustomException;
-
 import java.util.List;
 
 @RemoteServiceRelativePath("DepartmentsServiceGWT")

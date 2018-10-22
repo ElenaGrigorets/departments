@@ -16,15 +16,21 @@ public class DepartmentAddEditFormPanel extends VerticalPanel {
     private TextBox nameTextBox;
 
     public DepartmentAddEditFormPanel(final Department department) {
+        FlexTable flexTable = new FlexTable();
+        flexTable.setCellSpacing(6);
+        FlexTable.FlexCellFormatter cellFormatter = flexTable.getFlexCellFormatter();
+        flexTable.setHTML(1, 1, "Name: ");
         nameTextBox = new TextBox();
-        HorizontalPanel namePanel = new HorizontalPanel();
-        namePanel.add(new Label("Name: "));
         nameTextBox.setValue(department.getName());
-        namePanel.add(nameTextBox);
-        setSize("50px", "50px");
-        add(namePanel);
+        flexTable.setWidget(1, 2, nameTextBox);
+
+//        HorizontalPanel namePanel = new HorizontalPanel();
+//        namePanel.add(new Label("Name: "));
+//        nameTextBox.setValue(department.getName());
+//        namePanel.add(nameTextBox);
+//        setSize("50px", "50px");
+//        add(namePanel);
         Button saveButton = new Button("Save");
-        namePanel.add(saveButton);
         saveButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
@@ -57,6 +63,19 @@ public class DepartmentAddEditFormPanel extends VerticalPanel {
 
             }
         });
+        flexTable.setWidget(2, 2, saveButton);
+        Button backButton = new Button("Back");
+        cellFormatter.setHorizontalAlignment(4, 2, HasHorizontalAlignment.ALIGN_LEFT);
+        backButton.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                RootPanel.get().clear();
+                RootPanel.get().add(new ListDepartmentsPanel());
+            }
+        });
+        flexTable.setWidget(3, 2, backButton);
+        RootPanel.get().clear();
+        RootPanel.get().add(flexTable);
 
     }
 
