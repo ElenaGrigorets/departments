@@ -1,6 +1,6 @@
 package dao.impl;
 
-import model.User;
+import com.mySampleApplication.client.shared.User;
 import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;

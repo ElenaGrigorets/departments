@@ -1,6 +1,6 @@
 package service;
 
-import model.User;
+import com.mySampleApplication.client.shared.User;
 
 import java.sql.SQLException;
 import java.util.List;

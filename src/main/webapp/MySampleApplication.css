@@ -13,3 +13,20 @@ body, td, a, div, .p {
 .myPanel {
     background-color: blue;
 }
+.gwt-PopupPanel {
+    border: 3px solid #000000;
+    padding: 3px;
+    background: white;
+}
+
+.gwt-PopupPanelGlass {
+    background-color: #000;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+.gwt-PopupPanel .popupContent {
+    border: none;
+    padding: 3px;
+    background: gray;
+}

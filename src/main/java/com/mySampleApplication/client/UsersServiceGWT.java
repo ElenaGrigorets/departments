@@ -4,7 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.mySampleApplication.client.shared.Department;
-import model.User;
+import com.mySampleApplication.client.shared.User;
 
 import java.util.List;
 
@@ -13,24 +13,24 @@ public interface UsersServiceGWT extends RemoteService {
     // Sample interface method of remote interface
     String getMessage(String msg);
 
-    List<Department> getDepartments();
-
     List<User> getUsersOfDepartment(Integer id);
 
-    void addDepartment(Department department);
+    User getUserById(Integer id);
 
-    void removeDepartment(Integer id);
+    void addUser(User user);
 
-    void updateDepartment(Department department);
+    void removeUser(Integer id);
+
+    void updateUser(User user);
 
     /**
      * Utility/Convenience class.
      * Use MySampleApplicationService.App.getInstance() to access static instance of MySampleApplicationServiceAsync
      */
     public static class App {
-        private static DepartmentsServiceGWTAsync ourInstance = GWT.create(UsersServiceGWT.class);
+        private static UsersServiceGWTAsync ourInstance = GWT.create(UsersServiceGWT.class);
 
-        public static synchronized DepartmentsServiceGWTAsync getInstance() {
+        public static synchronized UsersServiceGWTAsync getInstance() {
             return ourInstance;
         }
     }

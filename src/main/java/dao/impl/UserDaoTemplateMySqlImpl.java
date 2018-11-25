@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.UserDao;
-import model.User;
+import com.mySampleApplication.client.shared.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.sql.SQLException;
 import java.util.List;

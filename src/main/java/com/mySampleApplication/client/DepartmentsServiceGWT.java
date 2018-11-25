@@ -4,7 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.mySampleApplication.client.shared.Department;
-
+import com.mySampleApplication.client.shared.exceptions.CustomException;
 import java.util.List;
 
 @RemoteServiceRelativePath("DepartmentsServiceGWT")
@@ -12,7 +12,7 @@ public interface DepartmentsServiceGWT extends RemoteService {
     // Sample interface method of remote interface
     String getMessage(String msg);
 
-    List<Department> getDepartments();
+    List<Department> getDepartments() throws CustomException;
 
     void addDepartment(Department department);
 

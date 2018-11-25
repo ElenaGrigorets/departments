@@ -6,7 +6,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.mySampleApplication.client.DepartmentsServiceGWT;
+import com.mySampleApplication.client.UsersServiceGWT;
 import com.mySampleApplication.client.shared.Department;
+import com.mySampleApplication.client.shared.User;
 
 import java.util.List;
 
@@ -15,54 +17,83 @@ import java.util.List;
  */
 public class ListUsersPanel extends VerticalPanel {
 
-
-
-    public ListUsersPanel() {
-        DepartmentsServiceGWT.App.getInstance().getDepartments(new AsyncCallback<List<Department>>() {
+    public ListUsersPanel(final Integer departmentId) {
+        UsersServiceGWT.App.getInstance().getUsersOfDepartment(departmentId, new AsyncCallback<List<User>>() {
             @Override
             public void onFailure(Throwable caught) {
                 System.out.println("oops!..fail...");
             }
 
             @Override
-            public void onSuccess(List<Department> result) {
-                for (final Department departmentToAdd : result) {
-                    HorizontalPanel horizontalPanel = new HorizontalPanel();
-                    horizontalPanel.add(new Label(String.valueOf(departmentToAdd.getId())));
-                    horizontalPanel.add(createNameAnchor(departmentToAdd));
+            public void onSuccess(List<User> result) {
+                final FlexTable flexTable = new FlexTable();
+                FlexTable.FlexCellFormatter cellFormatter = flexTable.getFlexCellFormatter();
+                flexTable.setCellPadding(3);
+                flexTable.setCellSpacing(5);
+                for (int i = 0; i < result.size(); i++) {
+                    final User userToAdd = result.get(i);
+                    flexTable.setHTML(i, 1, String.valueOf(userToAdd.getId()));
+                    flexTable.setHTML(i, 2, String.valueOf(userToAdd.getName()));
+                    flexTable.setHTML(i, 3, String.valueOf(userToAdd.getAge()));
                     Button removeButton = new Button("Remove");
                     removeButton.addClickHandler(new ClickHandler() {
                         @Override
                         public void onClick(ClickEvent event) {
-                            DepartmentsServiceGWT.App.getInstance().removeDepartment(departmentToAdd.getId(),
+                            UsersServiceGWT.App.getInstance().removeUser(userToAdd.getId(),
                                     new AsyncCallback<Void>() {
                                         @Override
                                         public void onFailure(Throwable caught) {
-
                                         }
 
                                         @Override
                                         public void onSuccess(Void result) {
-                                            new ListUsersPanel();
+                                            new ListUsersPanel(departmentId);
                                         }
                                     });
                         }
                     });
-                    horizontalPanel.add(removeButton);
+                    flexTable.setWidget(i, 4, removeButton);
 
-                    add(horizontalPanel);
+                    Button editButton = new Button("Edit");
+                    editButton.addClickHandler(new ClickHandler() {
+                        @Override
+                        public void onClick(ClickEvent event) {
+                            RootPanel.get().clear();
+                            RootPanel.get().add(new UserAddEditFormPanel(userToAdd));
+//                            UsersServiceGWT.App.getInstance().updateUser(userToAdd);
+                        }
+                    });
+                    flexTable.setWidget(i, 5, editButton);
                 }
-
-
-                Button addButton = new Button("Add department");
+                Button addButton = new Button("Add user");
                 addButton.addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
                         RootPanel.get().clear();
-                        RootPanel.get().add(new DepartmentAddEditFormPanel(new Department()));
+                        User user = new User();
+                        user.setDepartmentId(departmentId);
+                        RootPanel.get().add(new UserAddEditFormPanel(user));
                     }
                 });
-                add(addButton);
+                Button backButton = new Button("Back to departments");
+                backButton.addClickHandler(new ClickHandler() {
+                    @Override
+                    public void onClick(ClickEvent event) {
+                        RootPanel.get().clear();
+                        RootPanel.get().add(new ListDepartmentsPanel());
+                    }
+                });
+                VerticalPanel buttonPanel = new VerticalPanel();
+                buttonPanel.setSpacing(6);
+                buttonPanel.add(addButton);
+                buttonPanel.add(backButton);
+                int rc = flexTable.getRowCount();
+                flexTable.setWidget(rc + 1, 1, buttonPanel);
+                if (rc > 0) {
+                    cellFormatter.setColSpan(rc + 1, 1, flexTable.getCellCount(rc - 1));
+                }
+                cellFormatter.setHorizontalAlignment(rc + 1, 1, HasHorizontalAlignment.ALIGN_CENTER);
+                add(flexTable);
                 RootPanel.get().clear();
                 RootPanel.get().add(ListUsersPanel.this);
             }
@@ -70,36 +101,5 @@ public class ListUsersPanel extends VerticalPanel {
 
     }
 
-    private Anchor createNameAnchor(final Department departmentToAdd) {
-        final Anchor anchor = new Anchor(departmentToAdd.getName());
-//        anchor.addClickListener(new ClickListener() {
-//            @Override
-//            public void onClick(Widget sender) {
-//                anchor.getElement().getStyle().setColor("red");
-//                String s = "fdfd";
-//            }
-//        });
-        anchor.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                DepartmentsServiceGWT.App.getInstance().getMessage(departmentToAdd.getName(),
-                        new AsyncCallback<String>() {
-                            @Override
-                            public void onFailure(Throwable caught) {
-                                Window.alert("bad");
-                            }
 
-                            @Override
-                            public void onSuccess(String result) {
-//                              Window.alert("all is good - " + result);
-//                              Window.alert("clicked for " + departmentToAdd.getName());
-                                RootPanel.get().clear();
-                                RootPanel.get().add(new DepartmentAddEditFormPanel(departmentToAdd));
-                            }
-                        });
-
-            }
-        });
-        return anchor;
-    }
 }

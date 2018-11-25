@@ -1,6 +1,7 @@
 package com.mySampleApplication.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
@@ -24,15 +25,7 @@ public class MySampleApplication implements EntryPoint {
      * This is the entry point method.
      */
     public void onModuleLoad() {
-
-//        Department department = new Department();
-//        department.setName("dep1");
-//        department.setId(1);
-//        Department department2 = new Department();
-//        department2.setName("dep2");
-//        department2.setId(2);
-
-//        List<Department> departmentList = Arrays.asList(department, department2);
+        RootPanel.get().getElement().getStyle().setTextAlign(Style.TextAlign.CENTER);
         new ListDepartmentsPanel();
     }
 

@@ -1,8 +1,7 @@
 package dao.impl;
 
+import com.mySampleApplication.client.shared.User;
 import dao.UserDao;
-import model.User;
-import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;

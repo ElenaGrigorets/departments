@@ -1,6 +1,6 @@
 package controller;
 
-import model.User;
+import com.mySampleApplication.client.shared.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -1,17 +1,20 @@
 package dao.impl;
 
+import com.mySampleApplication.client.shared.exceptions.CustomException;
 import dao.DepartmentDao;
 import com.mySampleApplication.client.shared.Department;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 //@Repository
 public class DepartmentsDaoMysqlImpl implements DepartmentDao {
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost/departments";
+    private static final Logger logger = Logger.getLogger(DepartmentsDaoMysqlImpl.class);
     private static Connection conn = null;
     private static Statement stmt = null;
     private static PreparedStatement prst = null;
@@ -85,7 +88,7 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
     }
 
     @Override
-    public List<Department> getDepartments() throws ClassNotFoundException, SQLException {
+    public List<Department> getDepartments() throws ClassNotFoundException, SQLException, CustomException {
         ResultSet rs = null;
         List<Department> departments;
         try {
@@ -104,12 +107,16 @@ public class DepartmentsDaoMysqlImpl implements DepartmentDao {
                 department.setName(name);
                 departments.add(department);
             }
+            logger.info("Departments fetched - " + departments.size());
         } finally {
             if (rs != null) {
                 rs.close();
             }
             stmt.close();
         }
+//        if(!departments.isEmpty()) {
+//            throw new CustomException();
+//        }
         return departments;
     }
 

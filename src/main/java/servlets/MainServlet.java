@@ -1,5 +1,6 @@
 package servlets;
 
+import com.mySampleApplication.client.shared.exceptions.CustomException;
 import dao.DepartmentDao;
 import dao.impl.DepartmentsDaoMysqlImpl;
 import service.DepartmentService;
@@ -24,7 +25,11 @@ public class MainServlet extends HttpServlet {
 //      req.setAttribute("departmentsList", DepartmentsHolder.getDepartments());
         DepartmentService departmentService = new DepartmentServiceImpl(new DepartmentsDaoMysqlImpl());
         try {
-            req.setAttribute("departmentsList", departmentService.getDepartments());
+            try {
+                req.setAttribute("departmentsList", departmentService.getDepartments());
+            } catch (CustomException e) {
+                e.printStackTrace();
+            }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

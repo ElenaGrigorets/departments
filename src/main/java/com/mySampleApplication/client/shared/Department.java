@@ -5,6 +5,7 @@ import holder.DepartmentsHolder;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,6 +41,9 @@ public class Department implements Serializable {
     private Integer id;
 
     private String name;
+
+    public Department() {
+    }
 
     public String getName() {
         return name;

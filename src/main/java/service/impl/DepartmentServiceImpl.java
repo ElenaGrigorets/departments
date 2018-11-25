@@ -1,5 +1,6 @@
 package service.impl;
 
+import com.mySampleApplication.client.shared.exceptions.CustomException;
 import dao.DepartmentDao;
 import com.mySampleApplication.client.shared.Department;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Department> getDepartments() throws SQLException, ClassNotFoundException {
+    public List<Department> getDepartments() throws SQLException, ClassNotFoundException, CustomException {
         return departmentDao.getDepartments();
     }
 
