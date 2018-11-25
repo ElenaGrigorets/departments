@@ -42,7 +42,7 @@ public class ListDepartmentsPanel extends VerticalPanel {
 //                    HorizontalPanel horizontalPanel = new HorizontalPanel();
 
 
-                    flexTable.setHTML(i, 1, String.valueOf(departmentToAdd.getId()));
+//                    flexTable.setHTML(i, 1, String.valueOf(departmentToAdd.getId()));
                     flexTable.setWidget(i, 2, createNameAnchor(departmentToAdd));
 
 //                    horizontalPanel.add(new Label(String.valueOf(departmentToAdd.getId())));
@@ -64,6 +64,10 @@ public class ListDepartmentsPanel extends VerticalPanel {
                         }
                     });
                     flexTable.setWidget(i, 3, removeButton);
+
+
+
+
 
                     Button editButton = new Button("Edit");
                     editButton.addClickHandler(new ClickHandler() {
@@ -153,12 +157,13 @@ public class ListDepartmentsPanel extends VerticalPanel {
 //                }
 //                }
                 final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
+                final DecoratedPopupPanel picturePopup = new DecoratedPopupPanel(true);
                 Button popupButton = new Button("Click to Popup", new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
                         // simplePopup.ensureDebugId("cwBasicPopup-simplePopup");
-                        simplePopup.setWidth("150px");
-                        simplePopup.setWidget(new HTML("First Popup"));
+                        simplePopup.setWidth("200px");
+                        simplePopup.setWidget(new HTML("This Is My First Popup"));
  //                       simplePopup.setWidget(new Label("Click outside of this popup to close it"));
                         //setWidget(new HTML("This is a first popup!"));
                         simplePopup.center();
@@ -172,7 +177,9 @@ public class ListDepartmentsPanel extends VerticalPanel {
                         Widget source = (Widget) event.getSource();
                         int left = source.getAbsoluteLeft() + 10;
                         int top = source.getAbsoluteTop() + 10;
-                        simplePopup.setPopupPosition(left, top);
+//                        Image myImage = new Image()
+//                        picturePopup.setWidget(new );
+                        picturePopup.setPopupPosition(left, top);
 
                         // Show the popup
                         simplePopup.show();
