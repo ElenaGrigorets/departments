@@ -2,9 +2,7 @@ package com.mySampleApplication.client.shared;
 
 import java.io.Serializable;
 
-/**
- * Created by dik81 on 23.01.18.
- */
+
 public class User implements Serializable {
     private String name;
     private Integer age;

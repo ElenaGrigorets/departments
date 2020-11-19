@@ -1,10 +1,9 @@
 package com.mySampleApplication.client.ui;
 
-import com.google.gwt.dom.client.Style;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -16,9 +15,7 @@ import com.mySampleApplication.client.shared.exceptions.CustomException;
 
 import java.util.List;
 
-/**
- * Created by dik81 on 02.07.18.
- */
+
 public class ListDepartmentsPanel extends VerticalPanel {
 
     public ListDepartmentsPanel() {
@@ -40,7 +37,6 @@ public class ListDepartmentsPanel extends VerticalPanel {
                 for (int i = 0; i < result.size(); i++) {
                     final Department departmentToAdd = result.get(i);
 //                    HorizontalPanel horizontalPanel = new HorizontalPanel();
-
 
 //                    flexTable.setHTML(i, 1, String.valueOf(departmentToAdd.getId()));
                     flexTable.setWidget(i, 2, createNameAnchor(departmentToAdd));
@@ -65,10 +61,6 @@ public class ListDepartmentsPanel extends VerticalPanel {
                     });
                     flexTable.setWidget(i, 3, removeButton);
 
-
-
-
-
                     Button editButton = new Button("Edit");
                     editButton.addClickHandler(new ClickHandler() {
                         @Override
@@ -80,7 +72,7 @@ public class ListDepartmentsPanel extends VerticalPanel {
                     flexTable.setWidget(i, 4, editButton);
                 }
 
-                Button addButton = new Button("Add department");
+                Button addButton = new Button("Add new department");
                 addButton.addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
